@@ -6,7 +6,7 @@ WORKDIR c:\HelloWorldFramework
 COPY HelloWorldNetFramework.sln .
 COPY HelloWorldNetFramework\HelloWorldNetFramework.csproj .\HelloWorldNetFramework\
 COPY HelloWorldNetFramework.Tests\HelloWorldNetFramework.Tests.csproj .\HelloWorldNetFramework.Tests\
-
+COPY nuget.config .
 RUN nuget restore HelloWorldNetFramework.sln
 
 COPY HelloWorldNetFramework c:\HelloWorldFramework
