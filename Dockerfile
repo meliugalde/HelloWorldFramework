@@ -7,7 +7,8 @@ FROM mcr.microsoft.com/dotnet/framework/sdk:4.8 as builder
 
 WORKDIR c:\\HelloWorldFramework
 COPY HelloWorldNetFramework.sln .
-RUN dotnet restore HelloWorldNetFramework.sln
+COPY HelloWorldNetFramework\\HelloWorldNetFramework.csproj .\\HelloWorldNetFramework
+RUN nuget restore HelloWorldNetFramework.sln
 
 COPY HelloWorldFramework c:\\HelloWorldFramework
 RUN msbuild HelloWorldNetFramework.csproj /p:OutputPath=c:\out /p:Configuration=Release
