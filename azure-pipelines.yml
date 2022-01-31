@@ -24,6 +24,7 @@ stages:
       displayName: Build an image
       inputs:
         command: build
-        dockerfile: '$(Build.SourcesDirectory)/HelloWorldNetFramework/Dockerfile'
+        dockerfile: '$(Build.SourcesDirectory)/HelloWorldFramework/Dockerfile'
+        buildContext: HelloWorldFramework
         tags: |
           $(tag)
