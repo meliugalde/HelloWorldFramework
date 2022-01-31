@@ -3,7 +3,7 @@
 
 # escape=`
 
-FROM mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019 as builder
+FROM mcr.microsoft.com/dotnet/framework/sdk:4.8 as builder
 
 WORKDIR c:\\HelloWorldFramework
 COPY HelloWorldNetFramework.sln .
@@ -13,7 +13,7 @@ COPY HelloWorldFramework c:\\HelloWorldFramework
 RUN msbuild HelloWorldNetFramework.csproj /p:OutputPath=c:\out /p:Configuration=Release
 
 # app image
-FROM mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019
+FROM mcr.microsoft.com/dotnet/framework/sdk:4.8
 SHELL [ "powershell", "-Command", "$ErrorActionPreference = 'Stop';" ]
 
 ENV APP_ROOT=C:\web-app
