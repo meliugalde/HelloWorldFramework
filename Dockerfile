@@ -6,8 +6,7 @@ WORKDIR c:\HelloWorldFramework
 COPY HelloWorldNetFramework.sln .
 COPY HelloWorldNetFramework\HelloWorldNetFramework.csproj .\HelloWorldNetFramework\
 COPY HelloWorldNetFramework.Tests\HelloWorldNetFramework.Tests.csproj .\HelloWorldNetFramework.Tests\
-COPY nuget.config .
-RUN nuget restore HelloWorldNetFramework.sln
+RUN nuget restore 
 
 COPY HelloWorldNetFramework c:\HelloWorldFramework
 RUN msbuild HelloWorldNetFramework.csproj /p:OutputPath=c:\out /p:Configuration=Release
