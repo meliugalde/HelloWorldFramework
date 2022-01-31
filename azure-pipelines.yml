@@ -25,6 +25,5 @@ stages:
       inputs:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/HelloWorldNetFramework/Dockerfile'
-        buildContext: HelloWorldFramework
         tags: |
           $(tag)
