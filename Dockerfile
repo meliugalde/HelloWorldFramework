@@ -7,7 +7,7 @@ FROM mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019 as
 
 WORKDIR c:\\HelloWorldFramework
 COPY HelloWorldNetFramework.sln .
-RUN nuget restore HelloWorldNetFramework.sln
+RUN dotnet restore HelloWorldNetFramework.sln
 
 COPY HelloWorldFramework c:\\HelloWorldFramework
 RUN msbuild HelloWorldNetFramework.csproj /p:OutputPath=c:\out /p:Configuration=Release
