@@ -6,11 +6,11 @@
 FROM mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019 as builder
 
 WORKDIR c:\\HelloWorldFramework
-COPY HelloWorldFramework\\HelloWorldFramework.sln .
-RUN nuget restore HelloWorldFramework.sln
+COPY HelloWorldFramework\\HelloWorldNetFramework.sln .
+RUN nuget restore HelloWorldNetFramework.sln
 
-COPY HelloWorldFramework C:\HelloWorldFramework
-RUN msbuild HelloWorldFramework.csproj /p:OutputPath=c:\out /p:Configuration=Release
+COPY HelloWorldFramework c:\\HelloWorldFramework
+RUN msbuild HelloWorldNetFramework.csproj /p:OutputPath=c:\out /p:Configuration=Release
 
 # app image
 FROM mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019
