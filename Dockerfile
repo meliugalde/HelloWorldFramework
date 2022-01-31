@@ -10,7 +10,7 @@ COPY HelloWorldNetFramework.sln .
 COPY HelloWorldNetFramework\\HelloWorldNetFramework.csproj .\\HelloWorldNetFramework
 RUN nuget restore HelloWorldNetFramework.sln
 
-COPY . .
+COPY HelloWorldNetFramework c:\\HelloWorldFramework
 RUN msbuild HelloWorldNetFramework.csproj /p:OutputPath=c:\out /p:Configuration=Release
 
 # app image
