@@ -8,6 +8,8 @@ FROM mcr.microsoft.com/dotnet/framework/sdk:4.8 as builder
 WORKDIR c:\\HelloWorldFramework
 COPY HelloWorldNetFramework.sln .
 COPY HelloWorldNetFramework\\HelloWorldNetFramework.csproj .\\HelloWorldNetFramework
+COPY HelloWorldNetFramework.Tests\\HelloWorldNetFramework.csproj .\\HelloWorldNetFramework.Tests
+
 RUN nuget restore HelloWorldNetFramework.sln
 
 COPY HelloWorldNetFramework c:\\HelloWorldFramework
