@@ -1,8 +1,8 @@
 **
 !app/
 !docker/
-!src/
-src/.vs
-src/packages
+!*/
+*/.vs
+*/packages
 **/obj
 **/bin
