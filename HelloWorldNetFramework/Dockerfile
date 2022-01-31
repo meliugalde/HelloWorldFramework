@@ -6,7 +6,7 @@
 FROM mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019 as builder
 
 WORKDIR c:\\HelloWorldFramework
-COPY ..\\HelloWorldNetFramework.sln .
+COPY .\\HelloWorldNetFramework.sln .
 RUN nuget restore HelloWorldNetFramework.sln
 
 COPY HelloWorldFramework c:\\HelloWorldFramework
