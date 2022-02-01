@@ -6,13 +6,13 @@ WORKDIR c:\HelloWorldFramework
 # COPY HelloWorldNetFramework.sln .
 COPY HelloWorldNetFramework\HelloWorldNetFramework.csproj .\HelloWorldNetFramework\
 # COPY HelloWorldNetFramework.Tests\HelloWorldNetFramework.Tests.csproj .\HelloWorldNetFramework.Tests\
-RUN dotnet restore  HelloWorldNetFramework.csproj
+RUN dotnet restore  HelloWorldNetFramework\HelloWorldNetFramework.csproj
 
 COPY HelloWorldNetFramework c:\HelloWorldFramework
 
 COPY . .
 WORKDIR c:\HelloWorldFramework\
-RUN dotnet build HelloWorldNetFramework.csproj /p:OutputPath=c:\out /p:Configuration=Release
+RUN dotnet build HelloWorldNetFramework\HelloWorldNetFramework.csproj /p:OutputPath=c:\out /p:Configuration=Release
 
 # app image
 FROM mcr.microsoft.com/dotnet/framework/sdk:4.8
