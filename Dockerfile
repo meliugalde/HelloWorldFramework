@@ -1,15 +1,18 @@
 # escape=`
 
-FROM mcr.microsoft.com/dotnet/framework/sdk:4.8 as builder
+FROM mcr.microsoft.com/windows/servercore:ltsc2019 as builder
 
 WORKDIR c:\HelloWorldFramework
-COPY HelloWorldNetFramework.sln .
+# COPY HelloWorldNetFramework.sln .
 COPY HelloWorldNetFramework\HelloWorldNetFramework.csproj .\HelloWorldNetFramework\
-COPY HelloWorldNetFramework.Tests\HelloWorldNetFramework.Tests.csproj .\HelloWorldNetFramework.Tests\
-RUN nuget restore 
+# COPY HelloWorldNetFramework.Tests\HelloWorldNetFramework.Tests.csproj .\HelloWorldNetFramework.Tests\
+RUN dotnet restore  HelloWorldNetFramework.csproj
 
 COPY HelloWorldNetFramework c:\HelloWorldFramework
-RUN msbuild HelloWorldNetFramework.csproj /p:OutputPath=c:\out /p:Configuration=Release
+
+COPY . .
+WORKDIR c:\HelloWorldFramework\HelloWorldNetFramework
+RUN dotnet build HelloWorldNetFramework.csproj /p:OutputPath=c:\out /p:Configuration=Release
 
 # app image
 FROM mcr.microsoft.com/dotnet/framework/sdk:4.8
