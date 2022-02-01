@@ -13,12 +13,21 @@ RUN DISM /Online /Quiet /Add-Package /PackagePath:.\microsoft-windows-netfx3-ond
 #clean up
 RUN del microsoft-windows-netfx3-ondemand-package~31bf3856ad364e35~amd64~~.cab
 RUN Remove-Item -Force -Recurse ${Env:TEMP}\*
+RUN Invoke-WebRequest -Outfile C:\ServiceMonitor.exe `
+    -Uri https://dotnetbinaries.blob.core.windows.net/servicemonitor/2.0.1.6/ServiceMonitor.exe
+RUN C:\Windows\System32\inetsrv\appcmd set apppool /appppool.name:DefaultAppPool /managedRuntimeVersion:v2.0
+
+#Install IIS
+RUN Add-WindowsFeature Web-Server
+RUN Add-WindowsFeature Web-Asp-Net
+RUN Remove-Item -Recurse C:\inetpub\wwwroot\*
+
 
 WORKDIR c:\HelloWorldFramework
 # COPY HelloWorldNetFramework.sln .
 COPY HelloWorldNetFramework\HelloWorldNetFramework.csproj .\HelloWorldNetFramework\
 # COPY HelloWorldNetFramework.Tests\HelloWorldNetFramework.Tests.csproj .\HelloWorldNetFramework.Tests\
-RUN dotnet restore  HelloWorldNetFramework\HelloWorldNetFramework.csproj
+RUN dotnet restore  HelloWorldNetFramework\HelloWorldNetFramework.csproj --verbosity detailed
 
 COPY HelloWorldNetFramework c:\HelloWorldFramework
 
