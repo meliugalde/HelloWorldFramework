@@ -15,7 +15,7 @@ RUN del microsoft-windows-netfx3-ondemand-package~31bf3856ad364e35~amd64~~.cab
 RUN Remove-Item -Force -Recurse ${Env:TEMP}\*
 RUN Invoke-WebRequest -Outfile C:\ServiceMonitor.exe `
     -Uri https://dotnetbinaries.blob.core.windows.net/servicemonitor/2.0.1.6/ServiceMonitor.exe
-RUN C:\Windows\System32\inetsrv\appcmd set apppool /appppool.name:DefaultAppPool /managedRuntimeVersion:v2.0
+RUN c:\Windows\System32\inetsrv\appcmd set apppool /apppool.name:DefaultAppPool /managedRuntimeVersion:V2.0
 
 #Install IIS
 RUN Add-WindowsFeature Web-Server
