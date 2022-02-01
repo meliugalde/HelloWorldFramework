@@ -1,10 +1,17 @@
 # escape=`
 
-# FROM mcr.microsoft.com/windows/servercore:ltsc2019 as builder
-
-FROM microsoft/dotnet-framework:4.7.2
+FROM mcr.microsoft.com/windows/servercore:ltsc2019 as builder
 
 ## Install .Net 3.5
+RUN Invoke-WebRequest -Outfile microsoft-windows-netfx3.zip `
+    -Uri https://dotnetbinaries.blob.core.windows.net/dockerassets/microsoft-windows-netfx3-1809.zip
+RUN tar -zxf microsoft-windows-netfx3.zip
+RUN Remove-Item -Force microsoft-windows-netfx3.zip
+##Install the package
+RUN DISM /Online /Quiet /Add-Package /PackagePath:.\microsoft-windows-netfx3-ondemand-package~31bf3856ad364e35~amd64~~.cab
+#clean up
+RUN del microsoft-windows-netfx3-ondemand-package~31bf3856ad364e35~amd64~~.cab
+RUN Remove-Item -Force -Recurse ${Env:TEMP}\*
 
 WORKDIR c:\HelloWorldFramework
 # COPY HelloWorldNetFramework.sln .
