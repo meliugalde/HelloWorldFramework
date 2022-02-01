@@ -15,7 +15,7 @@ RUN del microsoft-windows-netfx3-ondemand-package~31bf3856ad364e35~amd64~~.cab
 RUN Remove-Item -Force -Recurse ${Env:TEMP}\*
 RUN Invoke-WebRequest -Outfile C:\ServiceMonitor.exe `
     -Uri https://dotnetbinaries.blob.core.windows.net/servicemonitor/2.0.1.6/ServiceMonitor.exe
-RUN c:\Windows\System32\inetsrv\appcmd set apppool /apppool.name:DefaultAppPool /managedRuntimeVersion:V2.0
+RUN c:\Windows\System32\inetsrv\appcmd set apppool /apppool.name:DefaultAppPool /managedRuntimeVersion:v2.0
 
 #Install IIS
 RUN Add-WindowsFeature Web-Server
@@ -39,7 +39,7 @@ RUN dotnet build HelloWorldNetFramework\HelloWorldNetFramework.csproj /p:OutputP
 FROM mcr.microsoft.com/dotnet/framework/sdk:4.8
 SHELL [ "powershell", "-Command", "$ErrorActionPreference = 'Stop';" ]
 
-ENV APP_ROOT=C:\web-app
+ENV APP_ROOT=c:\web-app
 
 WORKDIR ${APP_ROOT}
 RUN New-WebApplication -Name 'app' -Site 'Default Web Site' -PhysicalPath $env:APP_ROOT
