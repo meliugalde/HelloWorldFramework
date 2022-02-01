@@ -1,6 +1,10 @@
 # escape=`
 
-FROM mcr.microsoft.com/dotnet/framework/sdk:4.8 as builder
+# FROM mcr.microsoft.com/windows/servercore:ltsc2019 as builder
+
+FROM microsoft/dotnet-framework:4.7.2
+
+## Install .Net 3.5
 
 WORKDIR c:\HelloWorldFramework
 # COPY HelloWorldNetFramework.sln .
