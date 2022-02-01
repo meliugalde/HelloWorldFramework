@@ -2,6 +2,7 @@
 
 FROM mcr.microsoft.com/windows/servercore:ltsc2019 as builder
 
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'SilentlyContinue'; $ProgressPreference = 'SilentlyContinue';"]
 ## Install .Net 3.5
 RUN Invoke-WebRequest -Outfile microsoft-windows-netfx3.zip `
     -Uri https://dotnetbinaries.blob.core.windows.net/dockerassets/microsoft-windows-netfx3-1809.zip
